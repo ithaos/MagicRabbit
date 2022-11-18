@@ -1,41 +1,36 @@
 <template>
-    <el-menu
-      :default-active="activeIndex"
-      class="el-menu-demo"
-      mode="horizontal"
-      :ellipsis="false"
-      @select="handleSelect"
-    >
-      <el-menu-item index="0">LOGO</el-menu-item>
-      <div class="flex-grow" />
-      <el-menu-item index="1">Processing Center</el-menu-item>
-      <el-sub-menu index="2">
-        <template #title>Workspace</template>
-        <el-menu-item index="2-1">item one</el-menu-item>
-        <el-menu-item index="2-2">item two</el-menu-item>
-        <el-menu-item index="2-3">item three</el-menu-item>
-        <el-sub-menu index="2-4">
-          <template #title>item four</template>
-          <el-menu-item index="2-4-1">item one</el-menu-item>
-          <el-menu-item index="2-4-2">item two</el-menu-item>
-          <el-menu-item index="2-4-3">item three</el-menu-item>
-        </el-sub-menu>
-      </el-sub-menu>
-    </el-menu>
-  </template>
-  
-  <script lang="ts" setup>
-  import { ref } from 'vue'
-  
-  const activeIndex = ref('1')
-  const handleSelect = (key: string, keyPath: string[]) => {
-    console.log(key, keyPath)
-  }
-  </script>
-  
-  <style>
-  .flex-grow {
-    flex-grow: 1;
-  }
-  </style>
-  
+  <div>
+    <el-carousel :interval="4000" type="card" height="200px">
+      <el-carousel-item v-for="index in 5" :key="index">
+        <el-image style="width: 100%; height: 100%" :src="'http://haos.fun:8088/pic/'+index+'.jpg'" fit="contain" />
+      </el-carousel-item>
+    </el-carousel>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref, onMounted } from 'vue'
+const count = ref(0)
+// 生命周期钩子
+onMounted(() => {
+  // console.log(window.innerHeight, 2131)
+})
+</script>
+
+<style scoped>
+.el-carousel__item h3 {
+  color: #475669;
+  opacity: 0.75;
+  line-height: 200px;
+  margin: 0;
+  text-align: center;
+}
+
+.el-carousel__item:nth-child(2n) {
+  background-color: #99a9bf;
+}
+
+.el-carousel__item:nth-child(2n + 1) {
+  background-color: #d3dce6;
+}
+</style>

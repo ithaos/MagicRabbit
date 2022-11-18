@@ -3,9 +3,16 @@ import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'home',
-    component: () => import(/* webpackChunkName: "about" */ '../views/home/Home.vue')
-  }
+    component: () => import(/* webpackChunkName: "about" */ '@/layout/index.vue'),
+    redirect: '/rabbit',
+    children: [
+      {
+        path: '/rabbit',
+        name: '首页',
+        component: () => import(/* webpackChunkName: "about" */ '@/views/home/Home.vue')
+      }
+    ]
+  },
 ]
 
 const router = createRouter({
